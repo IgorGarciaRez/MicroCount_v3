@@ -7,7 +7,7 @@ from .Setor import Setor
 
 class Imagem:
     def __init__(self, *, caminhoImg, porcentagemSetor):
-        self.__nomeImg, self.__extensaoImg = os.path.basename(caminhoImg).split(sep = ".", maxsplit = 1)
+        self.__nomeImg, self.__extensaoImg = os.path.basename(caminhoImg).rsplit(sep = ".", maxsplit = 1)
         self.__img = cv.imread(caminhoImg, 1)
         self.__particionaImagem(porcentagemSetor = porcentagemSetor)
         

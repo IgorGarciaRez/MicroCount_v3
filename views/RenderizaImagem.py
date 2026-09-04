@@ -4,7 +4,7 @@ from Utilitarios import Utilitarios
 
 class RenderizaImagem:
 
-    def __init__(self, *, imagem, callbackQuadroSelecionado, callbackFecharImagem, callbackViewCrua, callbackViewSetores, callbackViewContagem, callbackExportarContagem, fonteTexto, escalaTexto, corTexto, espessuraTexto, corLinha, espessuraLinha, opacidadeLinha, opacidadeSetorContabilizado):
+    def __init__(self, *, imagem, callbackQuadroSelecionado, callbackFecharImagem, callbackViewCrua, callbackViewSetores, callbackViewContagem, callbackExportarContagem, callbackGerarRelatorios, fonteTexto, escalaTexto, corTexto, espessuraTexto, corLinha, espessuraLinha, opacidadeLinha, opacidadeSetorContabilizado):
         self.__imagem = imagem
         self.__callbackQuadroSelecionado = callbackQuadroSelecionado
         self.__callbackFecharImagem = callbackFecharImagem
@@ -21,6 +21,7 @@ class RenderizaImagem:
         self.__callbackViewSetores = callbackViewSetores
         self.__callbackViewContagem = callbackViewContagem
         self.__callbackExportarContagem = callbackExportarContagem
+        self.__callbackGerarRelatorios = callbackGerarRelatorios
 
     def renderizaImagem(self):
         self.__mostraImagem(
@@ -28,7 +29,8 @@ class RenderizaImagem:
             dictWaitKey = {
                 'q': self.__fecharImagem,
                 'f': self.__defineViewSetores,
-                's': self.__callbackExportarContagem
+                's': self.__callbackExportarContagem,
+                'p': self.__callbackGerarRelatorios
             }
         )
 
@@ -42,7 +44,8 @@ class RenderizaImagem:
                 'q': self.__fecharImagem,
                 'f': self.__defineViewCrua,
                 'r': self.__defineViewContagem,
-                's': self.__callbackExportarContagem
+                's': self.__callbackExportarContagem,
+                'p': self.__callbackGerarRelatorios
             }
         )
 
@@ -56,7 +59,8 @@ class RenderizaImagem:
             dictWaitKey = {
                 'q': self.__fecharImagem,
                 'r': self.__defineViewSetores,
-                's': self.__callbackExportarContagem
+                's': self.__callbackExportarContagem,
+                'p': self.__callbackGerarRelatorios
             }
         )
 

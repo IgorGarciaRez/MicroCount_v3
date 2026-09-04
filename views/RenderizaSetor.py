@@ -86,8 +86,7 @@ class RenderizaSetor:
             if self.__mostrarIA and self.__pontosIA_zoom is None:
                 try:
                     roi = self.__imagem.obtemImgSetorAtual()
-                    #Vizualizar passos como TRUE -> Abre várias janelas de todos os processos para identificação das bactérias
-                    pts_auto = DetectorAuto.detectar_colonias(roi, visualizar_passos=False) 
+                    pts_auto = DetectorAuto.detectar_colonias(roi, salvar_pdf_em=None)
                     z = self.__zoomSetor
                     self.__pontosIA_zoom = [(int(x * z), int(y * z)) for (x, y) in pts_auto]
                 except Exception:

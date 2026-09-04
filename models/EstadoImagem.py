@@ -4,10 +4,11 @@ import cv2 as cv
 from .Estado import Estado
 from views import RenderizaImagem
 from controllers.ExportarContagem import ExportarContagem
+from controllers.RelatorioLote import RelatorioLote
 
 class EstadoImagem(Estado):
 
-    def __init__(self, *, imagem, contagemPadrao, encerrarExecucao, callbackNavegarSetor, fonteTexto, escalaTexto, corTexto, espessuraTexto, corLinha, espessuraLinha, opacidadeLinha, opacidadeSetorContabilizado, caminhoExportacao):
+    def __init__(self, *, imagem, contagemPadrao, encerrarExecucao, callbackNavegarSetor, fonteTexto, escalaTexto, corTexto, espessuraTexto, corLinha, espessuraLinha, opacidadeLinha, opacidadeSetorContabilizado, caminhoExportacao, caminhoRelatorios):
         self.__imagem = imagem
         self.__renderizaImagem = RenderizaImagem(
             imagem = imagem, 
@@ -24,13 +25,18 @@ class EstadoImagem(Estado):
             callbackViewCrua = lambda : self.__defineModoVisualizacao('crua'),
             callbackViewSetores = lambda : self.__defineModoVisualizacao('setores'),
             callbackViewContagem = lambda : self.__defineModoVisualizacao('contagem'),
-            callbackExportarContagem = self.__exportarContagem
+            callbackExportarContagem = self.__exportarContagem,
+            callbackGerarRelatorios = self.__gerarRelatorios
         )
         self.__exportaContagem = ExportarContagem(
             imagem=imagem,
             caminhoExportacao = caminhoExportacao,
             contagemPadrao = contagemPadrao
         ) 
+        self.__relatorioLote = RelatorioLote(
+            imagem = imagem,
+            caminhoRelatorios = caminhoRelatorios
+        )
         self.__callbackNavegarSetor = callbackNavegarSetor
         self.__modoVisualizacao = 'contagem'
         self.__dictVisualizacao = {
@@ -41,6 +47,9 @@ class EstadoImagem(Estado):
     
     def __exportarContagem(self):
         self.__exportaContagem.exportaContagem()
+
+    def __gerarRelatorios(self):
+        self.__relatorioLote.geraRelatorios()
 
     def __selecionarQuadro(self, x_event, y_event):
         setorSelecionado = ((y_event // self.__imagem.obtemSaltoLinha()) * self.__imagem.obtemNumColunas()) + (x_event // self.__imagem.obtemSaltoColuna())
