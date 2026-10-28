@@ -78,3 +78,8 @@ Sinta-se à vontade para personalizar o sistema ajustando os parâmetros necess�
 
 ### Contagem por processamento de Imagem
 O MicroCount evoluiu de uma tentativa de automação por IA para uma solução de contagem assistida, onde o usuário mantém o controle da análise, mas com o suporte de ferramentas que tornam o processo mais rápido, visual e organizado
+
+### Licença de Uso
+Copyright (c) 2026 Universidade Federal de Lavras (UFLA)
+Esta ferramenta é pública e pode ser utilizada livremente para fins não comerciais.
+Caso planeje usar para fins comerciais entre em contato com a UFLA.
